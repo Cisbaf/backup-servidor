@@ -15,7 +15,7 @@ ENV_GLOBAL = "/etc/cisbaf-setup/cisbaf-global-envs.conf"
 load_dotenv(ENV_GLOBAL)
 
 backups: List[Type[BackupRepository]] = [
-    GitRemoteBackup
+    GitRemoteBackup,
     NginxBackup,
     EnvsBackup, 
     MysqlBackup,
