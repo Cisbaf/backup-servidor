@@ -4,6 +4,7 @@ from controllers.envs_backup import EnvsBackup
 from controllers.mysql_backup import MysqlBackup
 from controllers.zabbix_backup import ZabbixBackup
 from controllers.nginx_backup import NginxBackup
+from controllers.git_backup import GitRemoteBackup
 from utils.path import find_folder_path
 from repositories.backup import BackupRepository
 from typing import List, Type
@@ -14,10 +15,11 @@ ENV_GLOBAL = "/etc/cisbaf-setup/cisbaf-global-envs.conf"
 load_dotenv(ENV_GLOBAL)
 
 backups: List[Type[BackupRepository]] = [
+    GitRemoteBackup
     NginxBackup,
-    # EnvsBackup, 
-    # MysqlBackup,
-    # ZabbixBackup
+    EnvsBackup, 
+    MysqlBackup,
+    ZabbixBackup
 ]
 
 if __name__ == "__main__":
