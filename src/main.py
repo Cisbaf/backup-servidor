@@ -6,7 +6,7 @@ from controllers.zabbix_backup import ZabbixBackup
 from controllers.nginx_backup import NginxBackup
 from controllers.git_backup import GitRemoteBackup
 from utils.path import find_folder_path
-from repositories.backup import BackupRepository
+from repositories.backup import BackupRepository, logger
 from typing import List, Type
 from dirsync import sync
 
@@ -23,7 +23,9 @@ backups: List[Type[BackupRepository]] = [
 ]
 
 if __name__ == "__main__":
+
     with ThreadPoolExecutor(max_workers=3) as executor:
+        logger.info(f"Inicializando {len(backups)} backups!")
         for backup_class in backups:
             executor.submit(backup_class().start)
     

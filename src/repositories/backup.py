@@ -51,7 +51,6 @@ class BackupRepository(ABC):
     def start(self):
         try:
             start_time = time.time()
-            self.register_log("info", "Inicializando o Backup")
             self.set_up()
             self.run()
         except Exception as e:

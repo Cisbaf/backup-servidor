@@ -25,6 +25,6 @@ class GitRemoteBackup(BackupRepository):
                     file.write(link + '\n')
                     links.append(link)
                 except subprocess.CalledProcessError as e:
-                    self.register_log("error", f"Erro ao executar git remote: {e.output.strip()}, projeto: {folder}")
+                    self.register_log("warning", f"Erro ao executar git remote: {e.output.strip()}, projeto: {folder}")
 
-        self.register_log("info", f"O backup dos links foram concluidos! {links}")
+        self.register_log("info", f"O backup dos links foram concluidos!")
